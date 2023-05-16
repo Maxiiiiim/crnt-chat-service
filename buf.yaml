@@ -1,0 +1,18 @@
+version: v1
+name: buf.build/levtul/chat
+deps:
+  - buf.build/googleapis/googleapis
+  - buf.build/grpc-ecosystem/grpc-gateway
+build:
+  excludes: []
+breaking:
+  use:
+    - FILE
+lint:
+  use:
+    - BASIC
+    - ENUM_VALUE_PREFIX
+    - ENUM_ZERO_VALUE_SUFFIX
+    - FILE_LOWER_SNAKE_CASE
+    - PACKAGE_VERSION_SUFFIX
+    - SERVICE_SUFFIX
