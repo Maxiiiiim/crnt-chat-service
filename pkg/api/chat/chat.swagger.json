@@ -1,0 +1,1208 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "api/chat/chat.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "ChatService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/dialog": {
+      "post": {
+        "summary": "dialogs",
+        "operationId": "ChatService_CreateDialog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatCreateDialogResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/chatCreateDialogRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ChatService"
+        ]
+      },
+      "patch": {
+        "operationId": "ChatService_UpdateDialogMeta",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatUpdateDialogMetaResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/chatUpdateDialogMetaRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ChatService"
+        ]
+      }
+    },
+    "/v1/dialog/join": {
+      "patch": {
+        "operationId": "ChatService_JoinDialog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatJoinDialogResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/chatJoinDialogRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ChatService"
+        ]
+      }
+    },
+    "/v1/dialog/leave": {
+      "patch": {
+        "operationId": "ChatService_LeaveDialog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatLeaveDialogResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/chatLeaveDialogRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ChatService"
+        ]
+      }
+    },
+    "/v1/dialog/{id}": {
+      "get": {
+        "operationId": "ChatService_GetDialogById",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatGetDialogByIdResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ChatService"
+        ]
+      }
+    },
+    "/v1/dialogs": {
+      "get": {
+        "operationId": "ChatService_GetUserDialogs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatGetUserDialogsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offsetId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ChatService"
+        ]
+      }
+    },
+    "/v1/message": {
+      "post": {
+        "summary": "messages",
+        "operationId": "ChatService_SendMessage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatSendMessageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/chatSendMessageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ChatService"
+        ]
+      },
+      "patch": {
+        "operationId": "ChatService_UpdateMessage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatUpdateMessageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/chatUpdateMessageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ChatService"
+        ]
+      }
+    },
+    "/v1/message/replies/{messageId}": {
+      "get": {
+        "operationId": "ChatService_GetReplies",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatGetRepliesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "messageId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "offsetId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ChatService"
+        ]
+      }
+    },
+    "/v1/message/reply": {
+      "post": {
+        "operationId": "ChatService_SendReply",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatSendReplyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/chatSendReplyRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ChatService"
+        ]
+      }
+    },
+    "/v1/messages": {
+      "post": {
+        "operationId": "ChatService_GetDialogMessages",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatGetDialogMessagesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/chatGetDialogMessagesRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ChatService"
+        ]
+      },
+      "put": {
+        "operationId": "ChatService_DeleteMessage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatDeleteMessageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/chatDeleteMessageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ChatService"
+        ]
+      }
+    },
+    "/v1/messages/search": {
+      "get": {
+        "operationId": "ChatService_SearchMessages",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatSearchMessagesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dialogId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offsetId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ChatService"
+        ]
+      }
+    },
+    "/v1/ping": {
+      "get": {
+        "summary": "ping",
+        "operationId": "ChatService_Ping",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatPingResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ChatService"
+        ]
+      }
+    },
+    "/v1/user": {
+      "post": {
+        "summary": "users",
+        "operationId": "ChatService_CreateUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatCreateUserResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/chatCreateUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ChatService"
+        ]
+      },
+      "patch": {
+        "operationId": "ChatService_UpdateUserMeta",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatUpdateUserMetaResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/chatUpdateUserMetaRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ChatService"
+        ]
+      }
+    },
+    "/v1/user/last_active": {
+      "post": {
+        "operationId": "ChatService_SetLastActive",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatSetLastActiveResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/chatSetLastActiveRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ChatService"
+        ]
+      }
+    },
+    "/v1/user/unread/{userId}": {
+      "get": {
+        "operationId": "ChatService_CountUnreadMessages",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatCountUnreadMessagesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ChatService"
+        ]
+      }
+    },
+    "/v1/user/{userId}": {
+      "get": {
+        "operationId": "ChatService_GetUserById",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatGetUserByIdResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ChatService"
+        ]
+      }
+    },
+    "/v1/users/last_active": {
+      "get": {
+        "operationId": "ChatService_GetUsersLastActive",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/chatGetUsersLastActiveResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userIds",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "ChatService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "chatCountUnreadMessagesResponse": {
+      "type": "object",
+      "properties": {
+        "unreadCount": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "chatCreateDialogRequest": {
+      "type": "object",
+      "properties": {
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "creatorId": {
+          "type": "string"
+        },
+        "personal": {
+          "type": "boolean"
+        }
+      }
+    },
+    "chatCreateDialogResponse": {
+      "type": "object",
+      "properties": {
+        "dialog": {
+          "$ref": "#/definitions/chatDialog"
+        }
+      }
+    },
+    "chatCreateUserRequest": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "chatCreateUserResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/chatUser"
+        }
+      }
+    },
+    "chatDeleteMessageRequest": {
+      "type": "object",
+      "properties": {
+        "messageId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "chatDeleteMessageResponse": {
+      "type": "object"
+    },
+    "chatDialog": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unreadCount": {
+          "type": "string",
+          "format": "int64"
+        },
+        "lastReadMessageId": {
+          "type": "string"
+        },
+        "lastMessage": {
+          "$ref": "#/definitions/chatMessage"
+        },
+        "personal": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "chatFileContent": {
+      "type": "object",
+      "properties": {
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "byte"
+          }
+        }
+      }
+    },
+    "chatGetDialogByIdResponse": {
+      "type": "object",
+      "properties": {
+        "dialog": {
+          "$ref": "#/definitions/chatDialog"
+        }
+      }
+    },
+    "chatGetDialogMessagesRequest": {
+      "type": "object",
+      "properties": {
+        "dialogId": {
+          "type": "string"
+        },
+        "offsetId": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "chatGetDialogMessagesResponse": {
+      "type": "object",
+      "properties": {
+        "messages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/chatMessage"
+          }
+        }
+      }
+    },
+    "chatGetRepliesResponse": {
+      "type": "object",
+      "properties": {
+        "messages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/chatMessage"
+          }
+        }
+      }
+    },
+    "chatGetUserByIdResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/chatUser"
+        }
+      }
+    },
+    "chatGetUserDialogsResponse": {
+      "type": "object",
+      "properties": {
+        "dialogs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/chatDialog"
+          }
+        }
+      }
+    },
+    "chatGetUsersLastActiveResponse": {
+      "type": "object",
+      "properties": {
+        "usersLastActive": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "chatJoinDialogRequest": {
+      "type": "object",
+      "properties": {
+        "dialogId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "chatJoinDialogResponse": {
+      "type": "object",
+      "properties": {
+        "dialog": {
+          "$ref": "#/definitions/chatDialog"
+        }
+      }
+    },
+    "chatLeaveDialogRequest": {
+      "type": "object",
+      "properties": {
+        "dialogId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "chatLeaveDialogResponse": {
+      "type": "object",
+      "properties": {
+        "dialog": {
+          "$ref": "#/definitions/chatDialog"
+        }
+      }
+    },
+    "chatMediaContent": {
+      "type": "object",
+      "properties": {
+        "media": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "byte"
+          }
+        }
+      }
+    },
+    "chatMessage": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "senderId": {
+          "type": "string"
+        },
+        "dialogId": {
+          "type": "string"
+        },
+        "sentAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "content": {
+          "$ref": "#/definitions/chatMessageContent"
+        },
+        "replyToId": {
+          "type": "string"
+        },
+        "seenByMe": {
+          "type": "boolean"
+        },
+        "seen": {
+          "type": "boolean"
+        },
+        "repliesCount": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "chatMessageContent": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "textContent": {
+          "$ref": "#/definitions/chatTextContent"
+        },
+        "mediaContent": {
+          "$ref": "#/definitions/chatMediaContent"
+        },
+        "fileContent": {
+          "$ref": "#/definitions/chatFileContent"
+        },
+        "serviceContent": {
+          "$ref": "#/definitions/chatServiceContent"
+        }
+      }
+    },
+    "chatPingResponse": {
+      "type": "object"
+    },
+    "chatSearchMessagesResponse": {
+      "type": "object",
+      "properties": {
+        "messages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/chatMessage"
+          }
+        }
+      }
+    },
+    "chatSendMessageRequest": {
+      "type": "object",
+      "properties": {
+        "senderId": {
+          "type": "string"
+        },
+        "dialogId": {
+          "type": "string"
+        },
+        "content": {
+          "$ref": "#/definitions/chatMessageContent"
+        }
+      }
+    },
+    "chatSendMessageResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "$ref": "#/definitions/chatMessage"
+        }
+      }
+    },
+    "chatSendReplyRequest": {
+      "type": "object",
+      "properties": {
+        "senderId": {
+          "type": "string"
+        },
+        "dialogId": {
+          "type": "string"
+        },
+        "content": {
+          "$ref": "#/definitions/chatMessageContent"
+        },
+        "replyToId": {
+          "type": "string"
+        }
+      }
+    },
+    "chatSendReplyResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "$ref": "#/definitions/chatMessage"
+        }
+      }
+    },
+    "chatServiceContent": {
+      "type": "object"
+    },
+    "chatSetLastActiveRequest": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "chatSetLastActiveResponse": {
+      "type": "object"
+    },
+    "chatTextContent": {
+      "type": "object"
+    },
+    "chatUpdateDialogMetaRequest": {
+      "type": "object",
+      "properties": {
+        "dialogId": {
+          "type": "string"
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "chatUpdateDialogMetaResponse": {
+      "type": "object",
+      "properties": {
+        "dialog": {
+          "$ref": "#/definitions/chatDialog"
+        }
+      }
+    },
+    "chatUpdateMessageRequest": {
+      "type": "object",
+      "properties": {
+        "messageId": {
+          "type": "string"
+        },
+        "content": {
+          "$ref": "#/definitions/chatMessageContent"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "chatUpdateMessageResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "$ref": "#/definitions/chatMessage"
+        }
+      }
+    },
+    "chatUpdateUserMetaRequest": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "chatUpdateUserMetaResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/chatUser"
+        }
+      }
+    },
+    "chatUser": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "version": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

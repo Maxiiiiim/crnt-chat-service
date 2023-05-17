@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package github.maxiiiiim.crnt_chat_service.api.chat;
+
+option go_package = "github.com/Maxiiiiim/crnt-chat-service/api/chat;chat";
+
+import "api/chat/models.proto";
+import "google/protobuf/timestamp.proto";
+
+
+message CreateUserRequest {
+  map<string, string> meta = 1;
+  string user_id = 2;
+}
+
+message CreateUserResponse {
+  User user = 1;
+}
+
+message UpdateUserMetaRequest {
+  string user_id = 1;
+  map<string, string> meta = 2;
+}
+
+message UpdateUserMetaResponse {
+  User user = 1;
+}
+
+message GetUserByIdRequest {
+  string user_id = 1;
+}
+
+message GetUserByIdResponse {
+  User user = 1;
+}
+
+message GetUsersLastActiveRequest {
+  repeated string user_ids = 1;
+}
+
+message GetUsersLastActiveResponse {
+  map<string, google.protobuf.Timestamp>  users_last_active = 1;
+}
+
+message SetLastActiveRequest {
+  string user_id = 1;
+}
+
+message SetLastActiveResponse {
+}

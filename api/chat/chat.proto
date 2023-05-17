@@ -1,0 +1,135 @@
+syntax = "proto3";
+
+package github.maxiiiiim.crnt_chat_service.api.chat;
+
+option go_package = "github.com/Maxiiiiim/crnt-chat-service/api/chat;chat";
+
+import "api/chat/users.proto";
+import "api/chat/dialogs.proto";
+import "api/chat/messages.proto";
+import "google/api/annotations.proto";
+
+service ChatService {
+  // users
+  rpc CreateUser(api.chat.CreateUserRequest) returns (api.chat.CreateUserResponse) {
+    option (google.api.http) = {
+      post: "/v1/user"
+      body: "*"
+    };
+  }
+  rpc GetUserById(api.chat.GetUserByIdRequest) returns (api.chat.GetUserByIdResponse) {
+    option (google.api.http) = {
+      get: "/v1/user/{user_id}"
+    };
+  }
+  rpc UpdateUserMeta(api.chat.UpdateUserMetaRequest) returns (api.chat.UpdateUserMetaResponse) {
+    option (google.api.http) = {
+      patch: "/v1/user"
+      body: "*"
+    };
+  }
+  rpc SetLastActive(api.chat.SetLastActiveRequest) returns (api.chat.SetLastActiveResponse) {
+    option (google.api.http) = {
+      post: "/v1/user/last_active"
+      body: "*"
+    };
+  }
+  rpc GetUsersLastActive(api.chat.GetUsersLastActiveRequest) returns (api.chat.GetUsersLastActiveResponse) {
+    option (google.api.http) = {
+      get: "/v1/users/last_active"
+    };
+  }
+
+  // dialogs
+  rpc CreateDialog(api.chat.CreateDialogRequest) returns (api.chat.CreateDialogResponse) {
+    option (google.api.http) = {
+      post: "/v1/dialog"
+      body: "*"
+    };
+  }
+  rpc GetDialogById(api.chat.GetDialogByIdRequest) returns (api.chat.GetDialogByIdResponse) {
+    option (google.api.http) = {
+      get: "/v1/dialog/{id}"
+    };
+  }
+  rpc UpdateDialogMeta(api.chat.UpdateDialogMetaRequest) returns (api.chat.UpdateDialogMetaResponse) {
+    option (google.api.http) = {
+      patch: "/v1/dialog"
+      body: "*"
+    };
+  }
+  rpc GetUserDialogs(api.chat.GetUserDialogsRequest) returns (api.chat.GetUserDialogsResponse) {
+    option (google.api.http) = {
+      get: "/v1/dialogs"
+    };
+  }
+  rpc JoinDialog(api.chat.JoinDialogRequest) returns (api.chat.JoinDialogResponse) {
+    option (google.api.http) = {
+      patch: "/v1/dialog/join"
+      body: "*"
+    };
+  }
+  rpc LeaveDialog(api.chat.LeaveDialogRequest) returns (api.chat.LeaveDialogResponse) {
+    option (google.api.http) = {
+      patch: "/v1/dialog/leave"
+      body: "*"
+    };
+  }
+  rpc CountUnreadMessages(api.chat.CountUnreadMessagesRequest) returns (api.chat.CountUnreadMessagesResponse) {
+    option (google.api.http) = {
+      get: "/v1/user/unread/{user_id}"
+    };
+  }
+
+  // messages
+  rpc SendMessage(api.chat.SendMessageRequest) returns (api.chat.SendMessageResponse) {
+    option (google.api.http) = {
+      post: "/v1/message"
+      body: "*"
+    };
+  }
+  rpc GetDialogMessages(api.chat.GetDialogMessagesRequest) returns (api.chat.GetDialogMessagesResponse) {
+    option (google.api.http) = {
+      post: "/v1/messages"
+      body: "*"
+    };
+  }
+  rpc SearchMessages(api.chat.SearchMessagesRequest) returns (api.chat.SearchMessagesResponse) {
+    option (google.api.http) = {
+      get: "/v1/messages/search"
+    };
+  }
+  rpc DeleteMessage(api.chat.DeleteMessageRequest) returns (api.chat.DeleteMessageResponse) {
+    option (google.api.http) = {
+      put: "/v1/messages"
+      body: "*"
+    };
+  }
+  rpc UpdateMessage(api.chat.UpdateMessageRequest) returns (api.chat.UpdateMessageResponse) {
+    option (google.api.http) = {
+      patch: "/v1/message"
+      body: "*"
+    };
+  }
+  rpc SendReply(api.chat.SendReplyRequest) returns (api.chat.SendReplyResponse) {
+    option (google.api.http) = {
+      post: "/v1/message/reply"
+      body: "*"
+    };
+  }
+  rpc GetReplies(api.chat.GetRepliesRequest) returns (api.chat.GetRepliesResponse) {
+    option (google.api.http) = {
+      get: "/v1/message/replies/{message_id}"
+    };
+  }
+
+  // ping
+  rpc Ping(PingRequest) returns (PingResponse) {
+    option (google.api.http) = {
+      get: "/v1/ping"
+    };
+  }
+}
+
+message PingRequest{}
+message PingResponse{}

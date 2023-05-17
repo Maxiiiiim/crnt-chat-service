@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package github.maxiiiiim.crnt_chat_service.api.chat;
+
+option go_package = "github.com/Maxiiiiim/crnt-chat-service/api/chat;chat";
+
+import "api/chat/models.proto";
+
+message CreateDialogRequest {
+  repeated string members = 1;
+  map<string, string> meta = 2;
+  string creator_id = 3;
+  bool personal = 4;
+}
+
+message CreateDialogResponse {
+  Dialog dialog = 1;
+}
+
+message UpdateDialogMetaRequest {
+  string dialog_id = 1;
+  map<string, string> meta = 2;
+}
+
+message UpdateDialogMetaResponse {
+  Dialog dialog = 1;
+}
+
+message GetDialogByIdRequest {
+  string id = 1;
+  string user_id = 2;
+}
+
+message GetDialogByIdResponse {
+  Dialog dialog = 1;
+}
+
+message GetUserDialogsRequest{
+  string user_id = 1;
+  string offset_id = 2;
+  int64 limit = 3;
+}
+
+message GetUserDialogsResponse {
+  repeated Dialog dialogs = 1;
+}
+
+message JoinDialogRequest{
+  string dialog_id = 1;
+  string user_id = 2;
+}
+
+message JoinDialogResponse {
+  Dialog dialog = 1;
+}
+
+message LeaveDialogRequest{
+  string dialog_id = 1;
+  string user_id = 2;
+}
+
+message LeaveDialogResponse {
+  Dialog dialog = 1;
+}
+
+message CountUnreadMessagesRequest {
+  string user_id = 1;
+}
+
+message CountUnreadMessagesResponse {
+  int64 unread_count = 1;
+}
+

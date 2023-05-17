@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package github.maxiiiiim.crnt_chat_service.api.chat;
+
+option go_package = "github.com/Maxiiiiim/crnt-chat-service/api/chat;chat";
+
+import "google/protobuf/timestamp.proto";
+
+message User {
+  string id = 1;
+  map<string, string> meta = 2;
+  int64 version = 3;
+}
+
+message Dialog {
+  string id = 1;
+  map<string, string> meta = 2;
+  repeated string members = 3;
+  int64 unread_count = 4;
+  string last_read_message_id = 5;
+  Message last_message = 6;
+  bool personal = 7;
+  google.protobuf.Timestamp created_at = 8;
+}
+
+message Message {
+  string id = 1 ;
+  string sender_id = 3;
+  string dialog_id = 4;
+  google.protobuf.Timestamp sent_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+  MessageContent content = 7;
+  string reply_to_id = 8;
+  bool seen_by_me = 9;
+  bool seen = 10;
+  uint64 replies_count = 11;
+}
+
+message TextContent {
+}
+
+message MediaContent {
+  repeated bytes media = 2;
+}
+
+message FileContent {
+  repeated bytes files = 2;
+}
+
+message ServiceContent {
+}
+
+message MessageContent {
+  string text = 1;
+  map<string, string> meta = 2;
+  oneof Content {
+    TextContent text_content = 3;
+    MediaContent media_content = 4;
+    FileContent file_content = 5;
+    ServiceContent service_content = 6;
+  }
+}

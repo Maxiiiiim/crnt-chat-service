@@ -1,0 +1,10 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: chats-user
+      POSTGRES_PASSWORD: chats-password
+      POSTGRES_DB: chats
+    ports:
+      - "5433:5432"
